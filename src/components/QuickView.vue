@@ -1,5 +1,3 @@
 <template>
-    <div>This is quick view</div>
+    <div>This is Quick View</div>
 </template>
-
-
