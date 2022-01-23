@@ -5,6 +5,7 @@ import App from "./App.vue";
 import "./assets/tailwind.css";
 import "./index.css";
 import VueLazyLoad from "vue3-lazyload";
+import { router } from "./route/route";
 
 const vueLifecycles = singleSpaVue({
   createApp,
@@ -24,6 +25,7 @@ const vueLifecycles = singleSpaVue({
   },
   handleInstance: (app) => {
     app.use(VueLazyLoad);
+    app.use(router);
   },
 });
 

@@ -3,7 +3,7 @@
     class="flex flex-col space-x-2 text-sm bg-blue-300 border-l-0 font-light w-full sm:w-[400px] max-h-screen overflow-auto h-[500px] p-5 items-center space-y-3 rounded-sm shadow-lg"
   >
     <h1>Preview</h1>
-    <div v-if="hasData" class="space-y-2">
+    <div v-if="hasData" class="space-y-4">
       <div class="text-center">{{ displayName }}</div>
       <div class="p-1 bg-white rounded-lg shadow-md">
         <img
@@ -19,6 +19,7 @@
         <TypeComponent :types="selectedPokemon.types" />
         <StatComponent :stats="selectedPokemon.stats" />
       </div>
+      <div class="cursor-pointer select-none" @click="gotoEvolutionChain">>> Evolution Chain</div>
     </div>
   </div>
 </template>
@@ -29,7 +30,13 @@ import spinner from "../assets/Spinner-1s-96px.gif";
 import HeightWeightComponent from "./HeightWeightComponent.vue";
 import TypeComponent from "./TypeComponent.vue";
 import StatComponent from "./StatComponent.vue";
+import { useRouter } from "vue-router";
+
+
+const router = useRouter();
+
 const selectedPokemon = reactive({} as any);
+
 onMounted(() => {
   window.addEventListener("pokemon-selected", async (e: any) => {
     if (e.detail && e.detail.length > 0) {
@@ -69,4 +76,8 @@ const getPokemonInfo = async (name: string) => {
 const getImageUrl = (id: string) => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 };
+
+const gotoEvolutionChain = () =>  {
+  router.push("evolution");
+}
 </script>
