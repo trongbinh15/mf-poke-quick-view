@@ -19,7 +19,9 @@
         <TypeComponent :types="selectedPokemon.types" />
         <StatComponent :stats="selectedPokemon.stats" />
       </div>
-      <div class="cursor-pointer select-none" @click="gotoEvolutionChain">>> Evolution Chain</div>
+      <div class="cursor-pointer select-none" @click="gotoEvolutionChain">
+        >> Evolution Chain
+      </div>
     </div>
   </div>
 </template>
@@ -31,7 +33,6 @@ import HeightWeightComponent from "./HeightWeightComponent.vue";
 import TypeComponent from "./TypeComponent.vue";
 import StatComponent from "./StatComponent.vue";
 import { useRouter } from "vue-router";
-
 
 const router = useRouter();
 
@@ -77,7 +78,10 @@ const getImageUrl = (id: string) => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 };
 
-const gotoEvolutionChain = () =>  {
-  router.push("evolution");
-}
+const gotoEvolutionChain = () => {
+  router.push({
+    path: "/evolution",
+  });
+  localStorage.setItem("pokemon", selectedPokemon.name);
+};
 </script>
