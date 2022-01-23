@@ -2,6 +2,9 @@ import { h, createApp } from "vue";
 import singleSpaVue from "single-spa-vue";
 
 import App from "./App.vue";
+import "./assets/tailwind.css";
+import "./index.css";
+import VueLazyLoad from "vue3-lazyload";
 
 const vueLifecycles = singleSpaVue({
   createApp,
@@ -18,6 +21,9 @@ const vueLifecycles = singleSpaVue({
         */
       });
     },
+  },
+  handleInstance: (app) => {
+    app.use(VueLazyLoad);
   },
 });
 
